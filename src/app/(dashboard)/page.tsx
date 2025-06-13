@@ -3,9 +3,11 @@ import HomeView from "@/modules/home/ui/views/home-views";
 
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import {caller} from "@/trpc/server";
 
 
 export default async function Page() {
+
     const session = await auth.api.getSession({
         headers:await headers(),
         
@@ -14,8 +16,6 @@ export default async function Page() {
     if (!session) {
         redirect('/sign-in')
     }
-
-     
 
     return (
         <HomeView />
